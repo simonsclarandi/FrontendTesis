@@ -20,6 +20,15 @@ export default function HubScreen() {
           <p className="text-slate-400 text-sm">Facturación, carrito, clientes y cobros.</p>
         </Link>
 
+        {/* Tarjeta Historial de Ventas */}
+        <Link to="/app/ventas/historial" className="group flex-1 bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-green-500 transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_-15px_rgba(34,197,189,0.5)]">
+          <div className="bg-green-500/10 w-20 h-20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-green-500/20 transition-colors">
+            <Storefront sx={{ fontSize: 40, color: '#22c5bd' }} />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Historial de Ventas</h2>
+          <p className="text-slate-400 text-sm">Consulta y analiza todas las transacciones realizadas.</p>
+        </Link>
+
         {/* Tarjeta Administración */}
         <Link to="/app/admin/usuarios" className="group flex-1 bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-purple-500 transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_-15px_rgba(168,85,247,0.5)]">
           <div className="bg-purple-500/10 w-20 h-20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-purple-500/20 transition-colors">
