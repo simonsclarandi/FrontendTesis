@@ -13,6 +13,11 @@ import RolesScreen from '../features/admin/views/roles/RolesScreen';
 import PermissionsScreen from '../features/admin/views/permisos/PermissionsScreen';
 import HistorialVentas from '../features/venta/views/HistorialVentas';
 import TicketVenta from '../features/venta/views/TicketVenta';
+import InventarioList from '../features/inventario/views/InventarioList';
+import InventarioCreate from '../features/inventario/views/InventarioCreate';
+import InventarioEdit from '../features/inventario/views/InventarioEdit';
+import InventarioDetails from '../features/inventario/views/InventarioDetails';
+import BalanceList from '../features/reportes/views/BalanceList';
 
 // --- DATOS DE PRUEBA (MOCK) ---
 // Esto simula lo que te devolverá tu API de .NET más adelante
@@ -62,6 +67,15 @@ export const AppRouter = () => {
       {/* Le pasamos el mock temporalmente como "venta" a la pantalla del ticket */}
       <Route path="/app/ventas/detalle/:id" element={<TicketVenta venta={ventaMock} />} />
 
+      {/* --- MÓDULO INVENTARIO --- */}
+      <Route path="/app/inventario" element={<InventarioList />} />
+      <Route path="/app/inventario/nuevo" element={<InventarioCreate />} />
+      <Route path="/app/inventario/editar/:id" element={<InventarioEdit />} />
+      <Route path="/app/inventario/detalle/:id" element={<InventarioDetails />} />
+
+      {/* --- MÓDULO REPORTES / BALANCE --- */}
+      <Route path="/app/reportes" element={<BalanceList />} />
+
       {/* --- MÓDULO ADMINISTRACIÓN (Con Sidebar) --- */}
       <Route path="/app/admin" element={<AdminLayout />}>
         {/* Si entran solo a /admin, los redirige a usuarios por defecto */}
@@ -70,6 +84,9 @@ export const AppRouter = () => {
         <Route path="usuarios" element={<UsersScreen />} />
         <Route path="roles" element={<RolesScreen />} />
         <Route path="permisos" element={<PermissionsScreen />} />
+
+        
+      
       </Route>
 
       {/* Ruta comodín: Si tipean cualquier cosa, van al login */}

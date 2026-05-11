@@ -9,7 +9,7 @@ export default function HubScreen() {
         <p className="text-slate-400">Selecciona un módulo para comenzar</p>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-6 max-w-4xl w-full justify-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl w-full mx-auto">
         
         {/* Tarjeta Punto de Venta */}
         <Link to="/app/punto-venta" className="group flex-1 bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-blue-500 transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_-15px_rgba(59,130,246,0.5)]">
@@ -45,6 +45,24 @@ export default function HubScreen() {
           </div>
           <h2 className="text-2xl font-bold text-white mb-2">Landing Page</h2>
           <p className="text-slate-400 text-sm">Visualiza y edita la página principal de tu tienda.</p>
+        </Link>
+
+        {/* Tarjeta Inventario */}
+        <Link to="/app/inventario" className="group flex-1 bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-red-500 transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_-15px_rgba(239,68,68,0.5)]">
+          <div className="bg-red-500/10 w-20 h-20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-red-500/20 transition-colors">
+            <Storefront sx={{ fontSize: 40, color: '#ef4444' }} />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Inventario</h2>
+          <p className="text-slate-400 text-sm">Gestiona tu stock y productos.</p>
+        </Link>
+
+        {/* Tarjeta Reportes / Balance */}
+        <Link to="/app/reportes" className="group flex-1 bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-indigo-500 transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_-15px_rgba(99,102,241,0.5)]">
+          <div className="bg-indigo-500/10 w-20 h-20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-indigo-500/20 transition-colors">
+            <Storefront sx={{ fontSize: 40, color: '#6366f1' }} />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Reportes / Balance</h2>
+          <p className="text-slate-400 text-sm">Accede a informes detallados y al balance financiero.</p>
         </Link>
 
       </div>
