@@ -18,6 +18,7 @@ import InventarioCreate from '../features/inventario/views/InventarioCreate';
 import InventarioEdit from '../features/inventario/views/InventarioEdit';
 import InventarioDetails from '../features/inventario/views/InventarioDetails';
 import BalanceList from '../features/reportes/views/BalanceList';
+import BitacoraList from '../features/admin/views/bitacora/BitacoraList';
 
 // --- DATOS DE PRUEBA (MOCK) ---
 // Esto simula lo que te devolverá tu API de .NET más adelante
@@ -84,9 +85,7 @@ export const AppRouter = () => {
         <Route path="usuarios" element={<UsersScreen />} />
         <Route path="roles" element={<RolesScreen />} />
         <Route path="permisos" element={<PermissionsScreen />} />
-
-        
-      
+        <Route path="bitacora" element={<BitacoraList />} />
       </Route>
 
       {/* Ruta comodín: Si tipean cualquier cosa, van al login */}

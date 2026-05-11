@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Storefront, AdminPanelSettings, Logout } from '@mui/icons-material';
+import { Storefront, AdminPanelSettings, Logout, Security } from '@mui/icons-material';
 
 export default function HubScreen() {
   return (
@@ -63,6 +63,15 @@ export default function HubScreen() {
           </div>
           <h2 className="text-2xl font-bold text-white mb-2">Reportes / Balance</h2>
           <p className="text-slate-400 text-sm">Accede a informes detallados y al balance financiero.</p>
+        </Link>
+
+        {/* Tarjeta Bitácora de Seguridad */}
+        <Link to="/app/admin/bitacora" className="group flex-1 bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-blue-500 transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_-15px_rgba(59,130,246,0.5)]">
+          <div className="bg-blue-500/10 w-20 h-20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-blue-500/20 transition-colors">
+            <Security sx={{ fontSize: 40, color: '#3b82f6' }} />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Bitácora de Seguridad</h2>
+          <p className="text-slate-400 text-sm">Consulta y analiza los eventos de seguridad de tu sistema.</p>
         </Link>
 
       </div>
