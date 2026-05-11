@@ -74,6 +74,8 @@ const BalanceList = () => {
 
   return (
     <div className="p-6 bg-slate-50 min-h-screen font-sans">
+
+      <button onClick={() => navigate('/app')}>Volver al Menú</button>
       
       {/* 1. HEADER Y FILTROS */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 max-w-7xl mx-auto">

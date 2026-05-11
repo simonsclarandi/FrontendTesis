@@ -56,6 +56,8 @@ const InventarioList = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen font-sans">
+
+      <button onClick={() => navigate('/app')}>Volver al Menú</button>
       
       {/* 1. HEADER Y SELECTOR DE SUCURSAL */}
       <div className={`bg-white p-5 rounded-2xl shadow-sm border-t-4 mb-6 flex justify-between items-center ${esMiStock ? 'border-t-blue-500' : 'border-t-orange-400'}`}>
