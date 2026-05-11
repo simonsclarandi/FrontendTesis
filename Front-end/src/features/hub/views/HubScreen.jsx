@@ -38,6 +38,15 @@ export default function HubScreen() {
           <p className="text-slate-400 text-sm">Gestión de usuarios, roles, permisos y reportes.</p>
         </Link>
 
+        {/* Tarjeta Landing Page */}
+        <Link to="/" className="group flex-1 bg-slate-800 rounded-2xl p-8 border border-slate-700 hover:border-yellow-500 transition-all hover:-translate-y-1 hover:shadow-[0_10px_40px_-15px_rgba(234,179,8,0.5)]">
+          <div className="bg-yellow-500/10 w-20 h-20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-yellow-500/20 transition-colors">
+            <Storefront sx={{ fontSize: 40, color: '#eaae54' }} />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Landing Page</h2>
+          <p className="text-slate-400 text-sm">Visualiza y edita la página principal de tu tienda.</p>
+        </Link>
+
       </div>
 
       {/* Botón de salir */}
