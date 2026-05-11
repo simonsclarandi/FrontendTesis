@@ -167,7 +167,7 @@ const HistorialVentas = () => {
     <div className="p-6 bg-gray-50 min-h-screen font-sans">
       
       {/* Header */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mb-6 text-center sm:text-left">
         <Button 
             startIcon={<ArrowBack />} 
             onClick={() => navigate('/app')} 
@@ -219,7 +219,7 @@ const HistorialVentas = () => {
               value={filtros.montoMin} onChange={handleInputChange}
             />
 
-            <div className="flex-1 flex justify-end gap-2">
+            <div className="w-full flex flex-col sm:flex-row justify-end gap-2 mt-2 sm:mt-0">
               <Button 
                 variant="outlined" color="error" startIcon={<Clock />}
                 onClick={() => setOpenDeudas(true)}
@@ -240,47 +240,50 @@ const HistorialVentas = () => {
 
       {/* Tabla Principal */}
       <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-        <table className="w-full text-left">
-          <thead className="bg-slate-50 border-b border-slate-200">
-            <tr>
-              <th className="p-4 text-xs font-bold text-slate-500 uppercase"># ID</th>
-              <th className="p-4 text-xs font-bold text-slate-500 uppercase">Fecha</th>
-              <th className="p-4 text-xs font-bold text-slate-500 uppercase">Cliente</th>
-              <th className="p-4 text-xs font-bold text-slate-500 uppercase">Total</th>
-              <th className="p-4 text-xs font-bold text-slate-500 uppercase text-center">Estado</th>
-              <th className="p-4 text-xs font-bold text-slate-500 uppercase text-right">Acciones</th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-slate-100">
-            {ventas.map((item) => (
-              <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
-                <td className="p-4 font-bold text-slate-700">#{item.id}</td>
-                <td className="p-4 text-sm text-slate-600">{item.fecha}</td>
-                <td className="p-4 text-sm font-medium text-slate-700">{item.clienteNombre}</td>
-                <td className="p-4 font-bold text-emerald-600">U$S {item.totalVenta.toLocaleString()}</td>
-                <td className="p-4 text-center">
-                  <Chip 
-                    label={item.estado} size="small" 
-                    color={item.estado === 'Vendido' ? 'success' : 'error'}
-                    variant="soft" className="font-bold text-[10px]"
-                  />
-                </td>
-                <td className="p-4 text-right">
-                  <Tooltip title="Ver Detalle">
-                    <IconButton size="small" color="primary" onClick={() => navigate(`/app/ventas/detalle/${item.id}`)}>
-                      <Visibility fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title="Anular">
-                    <IconButton size="small" color="error">
-                      <Trash fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                </td>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left min-w-[800px]">
+            <thead className="bg-slate-50 border-b border-slate-200">
+              <tr>
+                <th className="p-4 text-xs font-bold text-slate-500 uppercase"># ID</th>
+                <th className="p-4 text-xs font-bold text-slate-500 uppercase">Fecha</th>
+                <th className="p-4 text-xs font-bold text-slate-500 uppercase">Cliente</th>
+                <th className="p-4 text-xs font-bold text-slate-500 uppercase">Total</th>
+                <th className="p-4 text-xs font-bold text-slate-500 uppercase text-center">Estado</th>
+                <th className="p-4 text-xs font-bold text-slate-500 uppercase text-right">Acciones</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="divide-y divide-slate-100">
+              {ventas.map((item) => (
+                <tr key={item.id} className="hover:bg-slate-50/50 transition-colors">
+                  <td className="p-4 font-bold text-slate-700">#{item.id}</td>
+                  <td className="p-4 text-sm text-slate-600">{item.fecha}</td>
+                  <td className="p-4 text-sm font-medium text-slate-700">{item.clienteNombre}</td>
+                  <td className="p-4 font-bold text-emerald-600">U$S {item.totalVenta.toLocaleString()}</td>
+                  <td className="p-4 text-center">
+                    <Chip 
+                      label={item.estado} size="small" 
+                      color={item.estado === 'Vendido' ? 'success' : 'error'}
+                      variant="soft" className="font-bold text-[10px]"
+                    />
+                  </td>
+                  <td className="p-4 text-right">
+                    <Tooltip title="Ver Detalle">
+                      <IconButton size="small" color="primary" onClick={() => navigate(`/app/ventas/detalle/${item.id}`)}>
+                        <Visibility fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Anular">
+                      <IconButton size="small" color="error">
+                        <Trash fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        
       </div>
 
       {/* MODAL 1: Lista de Deudas */}
@@ -289,43 +292,55 @@ const HistorialVentas = () => {
           <Payments /> Cuentas por Cobrar
         </DialogTitle>
         <DialogContent dividers className="p-0">
-          <table className="w-full text-sm">
-            <thead className="bg-slate-50 sticky top-0">
-              <tr className="border-b">
-                <th className="p-4 text-left">Cliente / Venta</th>
-                <th className="p-4 text-right">Deuda</th>
-                <th className="p-4 text-center">Estado</th>
-                <th className="p-4 text-right">Acción</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {deudas.map((deuda) => (
-                <tr key={deuda.idPago} className="hover:bg-gray-50">
-                  <td className="p-4">
-                    <div className="font-bold">{deuda.cliente}</div>
-                    <div className="text-xs text-gray-500">Venta #{deuda.idVenta} • Vence: {deuda.vencimiento}</div>
-                  </td>
-                  <td className="p-4 text-right font-bold text-red-600">U$S {deuda.monto.toFixed(2)}</td>
-                  <td className="p-4 text-center">
-                    <Chip 
-                      label={deuda.diasRestantes < 0 ? `Venció hace ${Math.abs(deuda.diasRestantes)} días` : `Faltan ${deuda.diasRestantes} días`}
-                      color={deuda.diasRestantes < 0 ? 'error' : 'warning'}
-                      size="small" className="text-[10px]"
-                    />
-                  </td>
-                  <td className="p-4 text-right">
-                    <Button 
-                      variant="contained" color="success" size="small" 
-                      startIcon={<PriceCheck />} onClick={() => navigate(`/app/ventas/detalle/${deuda.idVenta}`)}
-                      className="bg-green-600 capitalize"
-                    >
-                      Cobrar
-                    </Button>
-                  </td>
+          {/* Le agregamos el DIV con overflow para el scroll horizontal en móviles */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm min-w-[600px]"> {/* min-w para que no se aplaste */}
+              <thead className="bg-slate-50 sticky top-0 z-10">
+                <tr className="border-b">
+                  <th className="p-4 text-left">Cliente / Venta</th>
+                  <th className="p-4 text-right">Deuda</th>
+                  <th className="p-4 text-center">Estado</th>
+                  <th className="p-4 text-right">Acción</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y">
+                {deudas.map((deuda) => (
+                  <tr key={deuda.idPago} className="hover:bg-gray-50">
+                    <td className="p-4">
+                      <div className="font-bold">{deuda.cliente}</div>
+                      <div className="text-xs text-gray-500">Venta #{deuda.idVenta} • Vence: {deuda.vencimiento}</div>
+                    </td>
+                    <td className="p-4 text-right font-bold text-red-600">U$S {deuda.monto.toFixed(2)}</td>
+                    <td className="p-4 text-center">
+                      <Chip 
+                        label={deuda.diasRestantes < 0 ? `Venció hace ${Math.abs(deuda.diasRestantes)} días` : `Faltan ${deuda.diasRestantes} días`}
+                        color={deuda.diasRestantes < 0 ? 'error' : 'warning'}
+                        size="small" className="text-[10px] font-bold"
+                      />
+                    </td>
+                    <td className="p-4 text-right whitespace-nowrap">
+                      {/* 1. Botón del ojito para ir al ticket (como tenías en C#) */}
+                      <Tooltip title="Ver Ticket">
+                        <IconButton size="small" color="primary" onClick={() => navigate(`/app/ventas/detalle/${deuda.idVenta}`)} className="mr-2">
+                          <Visibility fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+
+                      {/* 2. Botón Cobrar apuntando a la función correcta */}
+                      <Button 
+                        variant="contained" color="success" size="small" 
+                        startIcon={<PriceCheck />} 
+                        onClick={() => abrirModalCobro(deuda)} // <--- ¡AQUÍ ESTÁ LA CORRECCIÓN!
+                        className="bg-green-600 font-bold capitalize shadow-sm"
+                      >
+                        Cobrar
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDeudas(false)} color="inherit">Cerrar</Button>

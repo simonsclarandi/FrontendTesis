@@ -78,7 +78,7 @@ const BalanceList = () => {
       <button onClick={() => navigate('/app')}>Volver al Menú</button>
       
       {/* 1. HEADER Y FILTROS */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4 max-w-7xl mx-auto">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4 max-w-7xl mx-auto">
         <div>
           <h2 className="text-3xl font-bold text-slate-800 flex items-center gap-3">
             <AccountBalance fontSize="large" className="text-blue-600" /> Balance Diario
@@ -86,20 +86,21 @@ const BalanceList = () => {
           <p className="text-slate-500 mt-1">Análisis de rentabilidad y flujo de caja.</p>
         </div>
 
-        <form onSubmit={handleFiltro} className="flex items-end gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200">
+        {/* Formulario responsivo: flex-col en móvil, sm:flex-row en pantallas más grandes */}
+        <form onSubmit={handleFiltro} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-200 w-full lg:w-auto">
           <TextField 
-            label="Desde" type="date" size="small"
+            label="Desde" type="date" size="small" fullWidth
             value={fechas.desde} onChange={(e) => setFechas({...fechas, desde: e.target.value})}
-            InputLabelProps={{ shrink: true }} className="w-36"
+            InputLabelProps={{ shrink: true }} className="sm:w-36"
           />
           <TextField 
-            label="Hasta" type="date" size="small"
+            label="Hasta" type="date" size="small" fullWidth
             value={fechas.hasta} onChange={(e) => setFechas({...fechas, hasta: e.target.value})}
-            InputLabelProps={{ shrink: true }} className="w-36"
+            InputLabelProps={{ shrink: true }} className="sm:w-36"
           />
           <Button 
             type="submit" variant="contained" color="primary" 
-            startIcon={<FilterAlt />} className="bg-blue-600 font-bold px-6 shadow-none"
+            startIcon={<FilterAlt />} className="bg-blue-600 font-bold px-6 shadow-none py-2"
           >
             Filtrar
           </Button>
@@ -159,7 +160,7 @@ const BalanceList = () => {
         {/* 4. TABLA DETALLADA POR DÍA */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left">
+            <table className="w-full text-left min-w-[800px]">
               <thead className="bg-slate-900 text-white text-xs uppercase tracking-wider">
                 <tr>
                   <th className="p-4 font-bold">Fecha</th>
@@ -224,42 +225,44 @@ const BalanceList = () => {
           {cargandoModal ? (
             <div className="p-10 text-center text-slate-500">Cargando comprobantes...</div>
           ) : (
-            <table className="w-full text-left">
-              <thead className="bg-white text-xs uppercase text-slate-500 border-b border-slate-200">
-                <tr>
-                  <th className="p-3 pl-6">Hora</th>
-                  <th className="p-3">Ticket</th>
-                  <th className="p-3">Cliente</th>
-                  <th className="p-3">Vendedor</th>
-                  <th className="p-3 text-right">Monto</th>
-                  <th className="p-3 text-right pr-6">Acción</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {ventasDia.length === 0 ? (
-                  <tr><td colSpan="6" className="p-6 text-center text-slate-400">Sin ventas.</td></tr>
-                ) : (
-                  ventasDia.map(venta => (
-                    <tr key={venta.id} className="hover:bg-slate-50">
-                      <td className="p-3 pl-6 font-mono text-slate-500 text-sm">{venta.hora}</td>
-                      <td className="p-3 font-bold text-slate-800">{venta.comprobante}</td>
-                      <td className="p-3 text-slate-700">{venta.cliente}</td>
-                      <td className="p-3 text-sm text-slate-500">{venta.empleado}</td>
-                      <td className="p-3 text-right font-bold text-emerald-600">U$S {venta.total.toLocaleString()}</td>
-                      <td className="p-3 text-right pr-6">
-                        <IconButton 
-                          size="small" color="primary" 
-                          onClick={() => navigate(`/app/ventas/detalle/${venta.id}`)}
-                          className="bg-blue-50 hover:bg-blue-100"
-                        >
-                          <Visibility fontSize="small" />
-                        </IconButton>
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead className="bg-white text-xs uppercase text-slate-500 border-b border-slate-200">
+                  <tr>
+                    <th className="p-3 pl-6">Hora</th>
+                    <th className="p-3">Ticket</th>
+                    <th className="p-3">Cliente</th>
+                    <th className="p-3">Vendedor</th>
+                    <th className="p-3 text-right">Monto</th>
+                    <th className="p-3 text-right pr-6">Acción</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {ventasDia.length === 0 ? (
+                    <tr><td colSpan="6" className="p-6 text-center text-slate-400">Sin ventas.</td></tr>
+                  ) : (
+                    ventasDia.map(venta => (
+                      <tr key={venta.id} className="hover:bg-slate-50">
+                        <td className="p-3 pl-6 font-mono text-slate-500 text-sm">{venta.hora}</td>
+                        <td className="p-3 font-bold text-slate-800">{venta.comprobante}</td>
+                        <td className="p-3 text-slate-700">{venta.cliente}</td>
+                        <td className="p-3 text-sm text-slate-500">{venta.empleado}</td>
+                        <td className="p-3 text-right font-bold text-emerald-600">U$S {venta.total.toLocaleString()}</td>
+                        <td className="p-3 text-right pr-6">
+                          <IconButton 
+                            size="small" color="primary" 
+                            onClick={() => navigate(`/app/ventas/detalle/${venta.id}`)}
+                            className="bg-blue-50 hover:bg-blue-100"
+                          >
+                            <Visibility fontSize="small" />
+                          </IconButton>
+                        </td>
+                      </tr>
+                    ))
+                  )}
+                </tbody>
+              </table>
+            </div>            
           )}
         </DialogContent>
         <DialogActions className="bg-slate-50 p-3">

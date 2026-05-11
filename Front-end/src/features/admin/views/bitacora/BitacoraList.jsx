@@ -105,7 +105,7 @@ const BitacoraList = () => {
         {/* TABLA DE AUDITORÍA */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
+            <table className="w-full text-left text-sm min-w-[800px]">
               <thead className="bg-slate-900 text-white uppercase tracking-wider text-xs">
                 <tr>
                   <th className="p-3 pl-4">Hora</th>
@@ -113,8 +113,7 @@ const BitacoraList = () => {
                   <th className="p-3">Usuario</th>
                   <th className="p-3">Acción</th>
                   <th className="p-3">Detalle</th>
-                  {/* Ocultamos la IP en celulares para que no se rompa la tabla */}
-                  <th className="p-3 hidden md:table-cell">IP</th> 
+                  <th className="p-3">IP</th> 
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-100">
@@ -145,13 +144,15 @@ const BitacoraList = () => {
                             </div>
                           )}
                         </td>
-                        <td className={`p-3 font-bold whitespace-nowrap ${color} flex items-center gap-2`}>
-                          <Icono fontSize="small" /> {item.accion}
+                        <td className={`p-3 font-bold whitespace-nowrap ${color}`}>
+                          <div className="flex items-center gap-2">
+                            <Icono fontSize="small" /> {item.accion}
+                          </div>
                         </td>
                         <td className="p-3 text-slate-600 max-w-xs truncate" title={item.detalle}>
                           {item.detalle}
                         </td>
-                        <td className="p-3 font-mono text-xs text-slate-400 hidden md:table-cell">
+                        <td className="p-3 font-mono text-xs text-slate-400 ">
                           {item.ip}
                         </td>
                       </tr>
