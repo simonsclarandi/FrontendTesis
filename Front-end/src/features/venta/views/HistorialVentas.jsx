@@ -168,13 +168,6 @@ const HistorialVentas = () => {
       
       {/* Header */}
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-center mb-6 text-center sm:text-left">
-        <Button 
-            startIcon={<ArrowBack />} 
-            onClick={() => navigate('/app')} 
-            className="text-gray-500 capitalize"
-        >
-            Menú Principal
-        </Button>
         <div className="text-center">
           <h2 className="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2">
             <FileText sx={{ color: '#1e293b' }} /> Historial de Ventas

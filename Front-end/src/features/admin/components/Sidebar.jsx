@@ -10,21 +10,11 @@ const Sidebar = () => {
   const menuItems = [
     { text: 'Roles', icon: <Security />, path: '/app/admin/roles' },
     { text: 'Permisos', icon: <VerifiedUser />, path: '/app/admin/permisos' },
-    { text: 'Usuarios', icon: <Group />, path: '/app/admin/usuarios' },
-    { text: 'Menú', icon: <Group />, path: '/app' }
+    { text: 'Usuarios', icon: <Group />, path: '/app/admin/usuarios' }
   ];
 
   return (
     <Box className="w-64 h-screen bg-slate-900 text-slate-300 flex flex-col border-r border-slate-800">
-      <div className="p-6 flex items-center gap-3">
-        <Smartphone className="text-blue-500" />
-        <Typography variant="h6" className="text-2xl font-black tracking-tighter text-white-900">
-          PUNTO<span className="text-blue-600">CELL</span>
-        </Typography>
-      </div>
-      
-      <Divider sx={{ bgcolor: 'rgba(255,255,255,0.05)' }} />
-      
       <List className="flex-1 px-3 py-4">
         {menuItems.map((item) => (
           <ListItem key={item.text} disablePadding className="mb-1">

@@ -47,7 +47,6 @@ const PuntoVentaContent = () => {
   return (
     <div className="w-full min-h-screen p-4 flex flex-col bg-gray-50">
       <div className="flex flex-col lg:flex-row gap-4 flex-1">
-        <button onClick={() => navigate('/app')}>Volver al Menú</button>
         
         <div className="w-full lg:w-1/3 flex flex-col gap-4 order-2 lg:order-1">
           <ClienteSection onOpenNuevoCliente={handleOpenNuevoCliente} clientesMock={clientesMock} />
