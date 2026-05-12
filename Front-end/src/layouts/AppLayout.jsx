@@ -282,7 +282,7 @@ export default function AppLayout() {
       <main className="flex-1 overflow-auto bg-slate-950">
 
         {/* Topbar */}
-        <div className="h-20 border-b border-slate-800 px-4 lg:px-8 flex items-center justify-between">
+        <div className="h-20 border-b border-slate-800 px-4 lg:px-8 flex items-center justify-between lg:hidden">
 
           <div className="flex items-center gap-4">
 
